@@ -8,15 +8,7 @@ input.addEventListener('input', throttle(onInputMessage, 500));
 textarea.addEventListener('input', throttle(onInputMessage, 500));
 form.addEventListener('submit', onSubmit);
 
-function startFile() {
-  const saveData = JSON.parse(localStorage.getItem('feedback-form-state'));
-
-  if (saveData) {
-    console.log(saveData);
-    input.value = saveData.email;
-    textarea.value = saveData.message;
-  }
-}
+startFile();
 
 function onInputMessage(event) {
   const {
@@ -33,4 +25,14 @@ function onSubmit(event) {
   event.preventDefault();
   event.currentTarget.reset();
   localStorage.removeItem('feedback-form-state');
+}
+
+function startFile() {
+  const saveData = JSON.parse(localStorage.getItem('feedback-form-state'));
+
+  if (saveData) {
+    console.log(saveData);
+    input.value = saveData.email;
+    textarea.value = saveData.message;
+  }
 }
