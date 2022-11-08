@@ -10,10 +10,10 @@ form.addEventListener('submit', onSubmit);
 
 startFile();
 
-function onInputMessage(event) {
+function onInputMessage() {
   const {
     elements: { email, message },
-  } = event.currentTarget.form;
+  } = form;
   const data = {
     email: email.value,
     message: message.value,
@@ -30,9 +30,9 @@ function onSubmit(event) {
 function startFile() {
   const saveData = JSON.parse(localStorage.getItem('feedback-form-state'));
 
-  if (saveData) {
+  if (localStorage.getItem('feedback-form-state')) {
     console.log(saveData);
-    input.value = saveData.email;
+    input.value = saveData.email || '';
     textarea.value = saveData.message;
   }
 }
